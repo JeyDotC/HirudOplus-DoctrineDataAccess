@@ -8,23 +8,23 @@ access from Hirudo, allowing you to store your neat objects into the database.
 
 * Download the extension from this repository.
 * Unzip
-* Put the DoctrineDataAccess folder into tour Hirudo under the ´´´ext/libs/´´´ 
+* Put the DoctrineDataAccess folder into tour Hirudo under the ```ext/libs/```
 directory.
 * That's all.
 
 ## Configuration
 
-* Go to your config file at ´´´ext/config/Config.yml´´´ and add your connection 
+* Go to your config file at ```ext/config/Config.yml``` and add your connection 
 configuration like this
 
-´´´yaml
-    dbal:
-        dbname: mydatabase
-        user: my_db_user
-        password: secret_pass
-        host: localhost
-        driver: pdo_mysql
-´´´
+```yaml
+dbal:
+    dbname: mydatabase
+    user: my_db_user
+    password: secret_pass
+    host: localhost
+    driver: pdo_mysql
+```
 
 * And you are good to go now.
 
