@@ -1,4 +1,4 @@
-HirudOplus-DoctrineDataAccess
-=============================
+HirudOplus
+==========
 
-A doctrine binding for Hirudo
+HirudO+ is an extensions repository for Hirudo
