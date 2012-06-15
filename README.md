@@ -18,12 +18,12 @@ directory.
 configuration like this
 
 ´´´yaml
-dbal:
-  dbname: mydatabase
-  user: my_db_user
-  password: secret_pass
-  host: localhost
-  driver: pdo_mysql
+    dbal:
+        dbname: mydatabase
+        user: my_db_user
+        password: secret_pass
+        host: localhost
+        driver: pdo_mysql
 ´´´
 
 * And you are good to go now.
