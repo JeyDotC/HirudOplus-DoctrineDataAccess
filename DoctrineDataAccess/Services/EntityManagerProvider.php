@@ -14,7 +14,7 @@ use Hirudo\Lang\DirectoryHelper;
  *
  * @author JeyDotC
  * 
- * @Export(id="entity_manager_provider", factory="instance")
+ * @Export(id="entity_manager", factory="getEntityManager")
  */
 class EntityManagerProvider {
 
@@ -24,14 +24,14 @@ class EntityManagerProvider {
      */
     private static $instance;
 
-    public static function instance() {
+    public static function getEntityManager() {
 
         if (!isset(self::$instance)) {
             self::$instance = new EntityManagerProvider();
             self::$instance->init();
         }
 
-        return self::$instance;
+        return self::$instance->em;
     }
 
     /**
@@ -53,29 +53,10 @@ class EntityManagerProvider {
         $this->businessRoot = Loader::toSinglePath($businessRoot, "");
     }
 
-    /**
-     * 
-     * @return EntityManager
-     */
-    public function getEntityManager() {
-        return $this->em;
-    }
-
     protected function init() {
         $config = $this->generateConfiguration();
 
         $this->em = EntityManager::create($this->config->get("dbal", array()), $config);
-    }
-
-    private function calculatePaths() {
-        $directoryHelper = new DirectoryHelper(new \RecursiveDirectoryIterator($this->businessRoot));
-        $directories = $directoryHelper->listDirectories(1);
-
-        foreach ($directories as &$directory) {
-            $directory .= DS . "Models" . DS . "Entities";
-        }
-
-        return $directories;
     }
 
     private function generateConfiguration() {
