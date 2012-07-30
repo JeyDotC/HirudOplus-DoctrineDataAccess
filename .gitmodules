@@ -4,3 +4,6 @@
 [submodule "doctrine/dbal"]
 	path = doctrine/dbal
 	url = git://github.com/doctrine/dbal.git
+[submodule "doctrine/orm"]
+	path = doctrine/orm
+	url = https://github.com/doctrine/doctrine2.git
