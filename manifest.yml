@@ -1,7 +1,7 @@
 namespaces:
   Doctrine: "ext::libs::DoctrineDataAccess::doctrine-orm"
   #Is your doctrine instalation elsewhere? you can put an absolute path.
-  #Doctrine: c:\Path\to\Doctrine
+  #Doctrine: c:\Path\to\doctrine-orm
   - DoctrineDataAccess
 services:
   - DoctrineDataAccess\Services\EntityManagerProvider
