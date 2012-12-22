@@ -1,5 +1,7 @@
 namespaces:
-  Doctrine: "ext::libs::DoctrineDataAccess::doctrine-orm"
+  Doctrine\Common: "ext::libs::DoctrineDataAccess::doctrine::common::lib"
+  Doctrine\DBAL: "ext::libs::DoctrineDataAccess::doctrine::dbal::lib"
+  Doctrine\ORM: "ext::libs::DoctrineDataAccess::doctrine::orm::lib"
   #Is your doctrine instalation elsewhere? you can put an absolute path.
   #Doctrine: c:\Path\to\doctrine-orm
   - DoctrineDataAccess
