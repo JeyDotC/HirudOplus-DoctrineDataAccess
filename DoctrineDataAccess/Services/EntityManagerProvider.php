@@ -72,7 +72,7 @@ class EntityManagerProvider {
             $dir->next();
         }
         
-        $config = Setup::createAnnotationMetadataConfiguration($directories, $this->config->get("debug"));
+        $config = Setup::createAnnotationMetadataConfiguration($directories, $this->config->get("enviroment") == "dev");
         
         foreach ($aliases as $alieas => $namespace) {
             $config->addEntityNamespace($alieas, $namespace);

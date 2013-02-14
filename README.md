@@ -72,7 +72,7 @@ class MyPersistentClass
 
 In order to get your entities detected by doctrine, those must be located in the
 entities folder of your applications, that is, if you have an application named MyApp
-your entities must be in the MyApp/Models/Entities folder and must be in the 
+your entities must be in the MyApp/Models/Entities folder and must be under the 
 ```MyApp\Models\Entities``` namespace.
 
 To know more about entities configuration look at [here](http://docs.doctrine-project.org/projects/doctrine-orm/en/latest/reference/basic-mapping.html) 
@@ -136,5 +136,34 @@ class HelloDoctrine extends Module {
 }
 ```
 
-And that's all for now, there will be more documentation as the extension advances,
-and a ninja section will be added very soon.
+Or, if you like the autocomplete too much, you can simply declare a dependency 
+over the component.
+
+```php
+namespace MyApp\Modules\HelloDoctrine;
+use Hirudo\Core\Module;
+use Hirudo\Core\Annotations\Import; //<-- Always use the 'use' statement with annotations!
+
+class HelloDoctrine extends Module {
+
+    /**
+    *
+    * @var MyApp\Models\Components\MyPersistentClassComponent
+    *
+    * @Import(className="MyApp\Models\Components\MyPersistentClassComponent")
+    */
+    private $myComponent;
+
+    public function index() {
+        //Yay with auto complete!
+        $myentities = $this->myComponent->getAll();
+        //Do something with $myentities
+    }
+
+    public function byId($id) {
+        $myentity = $this->myComponent->getById($id);
+        //Do something with $myentity
+    }
+}
+```
+
