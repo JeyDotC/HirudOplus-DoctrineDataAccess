@@ -1,9 +1,1 @@
-[submodule "doctrine/common"]
-	path = doctrine/common
-	url = git://github.com/doctrine/common.git
-[submodule "doctrine/dbal"]
-	path = doctrine/dbal
-	url = git://github.com/doctrine/dbal.git
-[submodule "doctrine/orm"]
-	path = doctrine/orm
-	url = git://github.com/doctrine/doctrine2.git
+#removed for issues while cloning this repository :(
