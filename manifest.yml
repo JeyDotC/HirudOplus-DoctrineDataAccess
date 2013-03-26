@@ -2,12 +2,10 @@
 active: true
 
 namespaces:
-  Doctrine\Common: "ext::libs::DoctrineDataAccess::doctrine::common::lib"
-  Doctrine\DBAL: "ext::libs::DoctrineDataAccess::doctrine::dbal::lib"
-  Doctrine\ORM: "ext::libs::DoctrineDataAccess::doctrine::orm::lib"
-  #Is your doctrine instalation elsewhere? you can put an absolute path like in the
-  #example below:
-  #Doctrine: c:\Path\to\doctrine-orm
+  Doctrine: "ext::libs::DoctrineDataAccess::doctrine"
   - DoctrineDataAccess
 services:
   - DoctrineDataAccess\Services\EntityManagerProvider
+
+plugins:
+  - DoctrineDataAccess\Plugins\TransactionsPlugin

@@ -6,10 +6,11 @@ ini_set("error_reporting", E_ERROR & ~E_WARNING & ~E_NOTICE);
  */
 require_once "../../../init.php";
 
-new Hirudo\Core\ModulesManager();
+$manager = new Hirudo\Core\ModulesManager("drupal");
 
 Hirudo\Core\ModulesManager::getAutoLoader()->registerNamespaces(array(
-    "Symfony\Component\Console" => dirname(__FILE__) . DS . "symfony-console",
+    "Doctrine" => dirname(__FILE__) . DS . "doctrine",
+    "Symfony\Component\Console" => dirname(__FILE__) . DS . "doctrine" . DS . "Doctrine",
 ));
 
 $app = "";
@@ -25,7 +26,7 @@ if ($argc >= 2) {
 }
 
 if (!empty($app)) {
-    Hirudo\Core\Context\ModulesContext::instance()->getConfig()->loadApp($app);
+    $manager->prepareApplication($app);
 }
 
 $helperSet = new \Symfony\Component\Console\Helper\HelperSet(
