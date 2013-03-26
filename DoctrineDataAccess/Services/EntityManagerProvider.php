@@ -7,7 +7,6 @@ use Doctrine\ORM\Tools\Setup;
 use Hirudo\Core\Annotations\Export;
 use Hirudo\Core\Context\ModulesContext;
 use Hirudo\Lang\Loader;
-use Hirudo\Lang\DirectoryHelper;
 
 /**
  * Creates and configures an EntityManager.
@@ -60,24 +59,30 @@ class EntityManagerProvider {
     }
 
     private function generateConfiguration() {
-        $dir = new \RecursiveDirectoryIterator($this->businessRoot);
+        $dir = new \RecursiveDirectoryIterator($this->businessRoot, \FilesystemIterator::SKIP_DOTS);
         $directories = array();
         $aliases = array();
 
         while ($dir->valid()) {
-            if (!$dir->isDot() && $dir->isDir()) {
+            if ($dir->isDir()) {
                 $directories[] = $dir->getPathname() . DS . "Models" . DS . "Entities";
                 $aliases[$dir->getBasename()] = "{$dir->getBasename()}\\Models\\Entities";
             }
             $dir->next();
         }
-        
-        $config = Setup::createAnnotationMetadataConfiguration($directories, $this->config->get("enviroment") == "dev");
-        
-        foreach ($aliases as $alieas => $namespace) {
-            $config->addEntityNamespace($alieas, $namespace);
+
+        $metadataImpl = $this->config->get("metadata_configuration_class");
+
+        $config = Setup::createConfiguration($this->config->get("enviroment") == "dev");
+        if ($metadataImpl != null) {
+            $config->setMetadataDriverImpl(new $metadataImpl($directories));
+        } else {
+            $config->setMetadataDriverImpl($config->newDefaultAnnotationDriver($directories, true));
         }
-        
+        foreach ($aliases as $alias => $namespace) {
+            $config->addEntityNamespace($alias, $namespace);
+        }
+
         return $config;
     }
 
