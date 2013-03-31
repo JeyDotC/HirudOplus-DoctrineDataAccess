@@ -8,4 +8,12 @@ services:
   - DoctrineDataAccess\Services\EntityManagerProvider
 
 plugins:
-  - DoctrineDataAccess\Plugins\TransactionsPlugin
+  - { class: DoctrineDataAccess\Plugins\TransactionsPlugin, active: true }
+  #
+  # This plugin updates the schema if needed on execution time.
+  # It's deactivated by default for performance and security.
+  #
+  # IMPORTANT: Deactivate this plugin on production as it raises a warning if
+  # it is active. 
+  #
+  - { class: DoctrineDataAccess\Plugins\SchemaGenerationPlugin, active: false }

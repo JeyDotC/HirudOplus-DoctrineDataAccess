@@ -54,8 +54,8 @@ class EntityManagerProvider {
 
     protected function init() {
         $config = $this->generateConfiguration();
-
-        $this->em = EntityManager::create($this->config->get("dbal", array()), $config);
+        $dbal = $this->config->get("dbal");
+        $this->em = EntityManager::create($dbal, $config);
     }
 
     private function generateConfiguration() {
